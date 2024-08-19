@@ -17,10 +17,10 @@ constructor(personName:string,personAge:number){
 //.......................................class no 2 student extends with person.................................
 class student extends person{
     roolNumber:string;
-    courses:course[]=[];
+    courses:string[]=[];
 
-    registerForCourses(){
-
+    registerForCourses(course:course){
+        this.courses.push(course.name)
     }
     constructor(name:string,age:number,rNum:string){
         super(name,age)
@@ -65,12 +65,17 @@ class course{
         this.instructors.push(inst)
     }
     gitListOfStudent(){
-        
+        console.log(this.name + " students:")
         this.students.forEach(element => {
             console.log(element.name);
         });
     }
-    
+    gitListOfInstructors(){
+        console.log(this.name + " instructrors: ")
+        this.instructors.forEach(element => {
+            console.log(element.name)
+        })
+    }
 }
 let course1 = new course(101,"typescript");
 let course2 = new course (102,"next js");
@@ -85,6 +90,8 @@ let student1 = new student("altaf",33,"t123");
 let student2= new student("sajdi",34,"t124")
 
 course1.addStudent(student1);
+student1.registerForCourses(course1);
+
 course1.addStudent(student2);
 
 course2.addStudent(student2);
@@ -92,7 +99,8 @@ course2.addStudent(student2);
 course1.gitListOfStudent();
 course2.gitListOfStudent();
 
-//course1.gitListOfSInstructors();
+course1.gitListOfInstructors();
+course2.gitListOfInstructors();
 
 
 //console.log(course1);
