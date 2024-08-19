@@ -14,7 +14,8 @@ class person {
 class student extends person {
     roolNumber;
     courses = [];
-    registerForCourses() {
+    registerForCourses(course) {
+        this.courses.push(course.name);
     }
     constructor(name, age, rNum) {
         super(name, age);
@@ -70,11 +71,15 @@ course2.setInstructor(instructor2);
 let student1 = new student("altaf", 33, "t123");
 let student2 = new student("sajdi", 34, "t124");
 course1.addStudent(student1);
+student1.registerForCourses(course1);
+student2.registerForCourses(course1);
+student2.registerForCourses(course2);
 course1.addStudent(student2);
 course2.addStudent(student2);
 course1.gitListOfStudent();
 course2.gitListOfStudent();
 course1.gitListOfInstructors();
+course2.gitListOfInstructors();
 //console.log(course1);
 //console.log(course2);
 // .........................................class no 5 depatment .............................
