@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -13,6 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+Object.defineProperty(exports, "__esModule", { value: true });
 //.......... ..............................class no 1 person ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 var person = /** @class */ (function () {
     function person(personName, personAge) {
@@ -27,8 +29,8 @@ var person = /** @class */ (function () {
 //.......................................class no 2 student extends with person.................................
 var student = /** @class */ (function (_super) {
     __extends(student, _super);
-    function student(rNum, course) {
-        var _this = _super.call(this, "sajdi", 33) || this;
+    function student(name, age, rNum) {
+        var _this = _super.call(this, name, age) || this;
         _this.courses = [];
         _this.roolNumber = rNum;
         return _this;
@@ -40,12 +42,12 @@ var student = /** @class */ (function (_super) {
 // .........................................class no 3 instructor extends with person ...................................
 var instructor = /** @class */ (function (_super) {
     __extends(instructor, _super);
-    function instructor(sal, course) {
-        var _this = _super.call(this, "Basit Sharif", 23) || this;
+    function instructor(name, age, sal) {
+        var _this = _super.call(this, name, age) || this;
         _this.salary = sal;
-        _this.courses = course;
         return _this;
     }
+    //courses:any[];
     instructor.prototype.assignCours = function () {
     };
     return instructor;
@@ -53,21 +55,40 @@ var instructor = /** @class */ (function (_super) {
 // .........................................class no 4 course................................
 var course = /** @class */ (function () {
     function course(id, name) {
-        this.student = [];
-        this.instructor = [];
+        this.students = [];
+        this.instructors = [];
         this.id = id;
         this.name = name;
     }
-    course.prototype.addStudent = function () {
+    course.prototype.addStudent = function (std) {
+        this.students.push(std);
     };
-    course.prototype.setInstructor = function () {
+    course.prototype.setInstructor = function (inst) {
+        this.instructors.push(inst);
+    };
+    course.prototype.gitListOfStudent = function () {
+        this.students.forEach(function (element) {
+            console.log(element.name);
+        });
     };
     return course;
 }());
 var course1 = new course(101, "typescript");
 var course2 = new course(102, "next js");
-var student1 = new student("t123", course1);
-var student2 = console.log(student1);
+var instructor1 = new instructor("Basit", 25, 55000);
+var instructor2 = new instructor("Sharif", 25.05, 52000);
+course1.setInstructor(instructor1);
+course2.setInstructor(instructor2);
+var student1 = new student("altaf", 33, "t123");
+var student2 = new student("sajdi", 34, "t124");
+course1.addStudent(student1);
+course1.addStudent(student2);
+course2.addStudent(student2);
+course1.gitListOfStudent();
+course2.gitListOfStudent();
+//course1.gitListOfSInstructors();
+//console.log(course1);
+//console.log(course2);
 // .........................................class no 5 depatment .............................
 var department = /** @class */ (function () {
     function department(name) {

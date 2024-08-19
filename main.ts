@@ -1,3 +1,5 @@
+import { Agent } from "http";
+
 //.......... ..............................class no 1 person ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 class person{
     name:string;
@@ -20,8 +22,8 @@ class student extends person{
     registerForCourses(){
 
     }
-    constructor(rNum:string,course:course){
-        super("sajdi",33)
+    constructor(name:string,age:number,rNum:string){
+        super(name,age)
         this.roolNumber=rNum;
     
         
@@ -31,14 +33,14 @@ class student extends person{
 // .........................................class no 3 instructor extends with person ...................................
 class instructor extends person{
     salary:number;
-    courses:any[];
+    //courses:any[];
     assignCours(){
 
     }
-    constructor(sal:number,course:any){
-        super("Basit Sharif",23)
+    constructor(name:string,age:number,sal:number,){
+        super(name,age)
         this.salary=sal;
-        this.courses=course
+        
 
     }
 }
@@ -48,26 +50,53 @@ class course{
     id:number;
     name:string;
     
-    student:student[]=[];
-    instructor:instructor[]=[];
+    students:student[]=[];
+    instructors:instructor[]=[];
 
     constructor(id:number,name:string){
         this.id=id;
         this.name=name;
     }
-    addStudent(){
+    addStudent(std:student){
+        this.students.push(std)
 
     }
-    setInstructor(){
-
+    setInstructor(inst:instructor){
+        this.instructors.push(inst)
     }
+    gitListOfStudent(){
+        
+        this.students.forEach(element => {
+            console.log(element.name);
+        });
+    }
+    
 }
 let course1 = new course(101,"typescript");
 let course2 = new course (102,"next js");
 
-let student1 = new student("t123", course1);
-let student2=
-console.log(student1)
+let instructor1 =new instructor("Basit", 25,55000);
+let instructor2 = new instructor("Sharif",25.05,52000)
+
+course1.setInstructor(instructor1);
+course2.setInstructor(instructor2)
+
+let student1 = new student("altaf",33,"t123");
+let student2= new student("sajdi",34,"t124")
+
+course1.addStudent(student1);
+course1.addStudent(student2);
+
+course2.addStudent(student2);
+
+course1.gitListOfStudent();
+course2.gitListOfStudent();
+
+//course1.gitListOfSInstructors();
+
+
+//console.log(course1);
+//console.log(course2);
 
 
 // .........................................class no 5 depatment .............................
